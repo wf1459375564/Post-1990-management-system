@@ -4,6 +4,7 @@ const {merge} = require('webpack-merge'),
 
 module.exports = merge(config, {
     mode: "development",
+    devtool:"eval-cheap-module-source-map",
     devServer: {
         port: 8888,
         compress: true,//是否压缩
