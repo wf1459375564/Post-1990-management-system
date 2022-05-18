@@ -172,7 +172,7 @@ export default {
         methods: "post",
         data: { account, password },
       });
-      this.message(res.msg, "error", 1000);
+      this.$message.success(res.msg);
     },
     async regis() {
       //注册
@@ -185,22 +185,26 @@ export default {
       console.log(res.code);
       if (res.code == 1) {
         this.lefts();
-        this.message(res.msg, "success", 1000);
+        this.$message.success(res.msg);
       } else {
-        this.message(res.msg, "error", 1000);
+        this.$message.error(res.msg);
       }
     },
     async register() {
       this.registers = !this.registers;
     },
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.regis();
-        } else {
-          return false;
-        }
-      });
+
+     this.$Submit(this.$refs[formName],()=>{
+        this.regis();
+     })
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     this.regis();
+      //   } else {
+      //     return false;
+      //   }
+      // });
     },
     lefts() {
       this.registers = !this.registers;
