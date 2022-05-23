@@ -9,21 +9,37 @@ let {
     Login
 } = route;
 
-const routes = [{ //登录页面
+const routes = [{
+        path: '/',
+        component: Login,
+        redirect: '/dashboard',
+        children: [{
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: Login,
+            meta: {
+                title: '首页',
+                icon: 'el-icon-s-home'
+            }
+        }]
+    },
+    { //登录页面
         path: '/login',
         component: Login,
     },
     { //404
         path: '/404',
+        name: '404',
         component: Login,
     },
     { //401
         path: '/401',
         component: Login,
     },
-    {//如果没有匹配到路径就直接404
-        path:'*',
-        redirect:'/404'
+
+    { //如果没有匹配到路径就直接404
+        path: '*',
+        redirect: '/404'
     }
 ];
 
